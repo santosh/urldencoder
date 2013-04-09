@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+from __future__ import print_function
+from sys import argv
+
+try:
+    from urllib.parse import quote, unquote
+except ImportError:
+    from urllib import quote, unquote
+
+help="""usage: urldencode.py [-d | -e] URLs...
+
+positional arguments:
+    -d/--decode      Decode URL; default
+    -e/--encode      Encode URL
+    
+PLEASE PUT QUOTES AROUND URL WHILE ENCODING
+"""
+
+if len(argv) < 2 or argv[1] == '-h' or argv[1] == '--help':
+    print(help, end='')
+elif argv[1] == '-d' or argv[1] == '--decode':
+    for i in range(2, len(argv)):
+        print(unquote(argv[i]))
+elif argv[1] == '-e' or argv[1] == '--encode':
+    for i in range(2, len(argv)):
+        print(quote(argv[i]))
+else:
+    print(help, end='')
